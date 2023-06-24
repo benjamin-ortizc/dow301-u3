@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('perfiles', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement()->primary();
+            $table->integer('id')->autoIncrement();
             $table->string('nombre', 20);
         });
     }

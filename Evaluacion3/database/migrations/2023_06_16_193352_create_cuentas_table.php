@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('apellido', 20);
             $table->integer('perfil_id');
 
-            $table->foreign('perfil_id')->references('id')->on('perfil');
+            $table->foreign('perfil_id')->references('id')->on('perfiles');
         });
     }
 
