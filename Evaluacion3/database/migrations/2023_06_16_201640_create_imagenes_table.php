@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('motivo_ban');
             $table->string('cuenta_user', 20);
 
-           w $table->foreign('cuenta_user')->references('user')->on('cuentas');
+           $table->foreign('cuenta_user')->references('user')->on('cuentas');
         });
     }
 
