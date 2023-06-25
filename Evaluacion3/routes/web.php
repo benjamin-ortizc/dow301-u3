@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImagenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+
+Route::get('/imagenes/upload', [ImagenController::class, 'upload'])->name('imagen.upload');
+Route::post('/imagenes/store', [ImagenController::class, 'store'])->name('imagen.store');
