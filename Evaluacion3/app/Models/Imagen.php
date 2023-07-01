@@ -9,4 +9,10 @@ class Imagen extends Model
 {
     use HasFactory;
     protected $table = 'imagenes';
+    public $timestamps = false;
+
+    public function cuenta()
+    {
+        return $this->belongsTo(Cuenta::class);
+    }
 }

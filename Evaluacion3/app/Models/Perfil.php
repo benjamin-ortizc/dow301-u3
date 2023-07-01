@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Perfil extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
     protected $table = 'perfiles';
     public $timestamps = false;
 

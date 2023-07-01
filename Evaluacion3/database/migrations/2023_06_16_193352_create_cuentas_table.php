@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nombre', 20);
             $table->string('apellido', 20);
             $table->integer('perfil_id');
+            $table->softDeletes();
 
             $table->foreign('perfil_id')->references('id')->on('perfiles');
         });

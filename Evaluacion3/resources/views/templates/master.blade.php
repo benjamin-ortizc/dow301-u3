@@ -9,43 +9,60 @@
           rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
           crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     @yield('style-ref')
     <title>Unidad 3</title>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Instaflan</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
+            <a class="navbar-brand" href="{{route('home.index')}}">Instaflan</a>
+
+            <div class="d-flex align-items-center">
+                @if(!empty(Auth::user()->user))
+                    <p class="m-0 p-0 mx-2">Conectado como {{Auth::user()->user}}</p>
+                    @if(Auth::user()->perfil->nombre == 'Artista')
+                        <a href="{{route('imagen.upload')}}" class="d-flex align-items-center text-decoration-none text-secondary flex-column mx-3">
+                            <span class="material-icons text-success">add_box</span>
+                            <small>Subir</small>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
-                    </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                    @endif
+                    <ul class="navbar-nav d-flex flex-row ms-auto me-1">
+                        <li class="nav-item me-3 me-lg-0 dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                <img src="https://www.pngitem.com/pimgs/m/421-4212341_default-avatar-svg-hd-png-download.png" class="rounded-circle" height="22"
+                                     alt="Foto de perfil" loading="lazy" />
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown1">
+                                @if(Auth::user()->perfil->nombre === 'Artista')
+                                    <li><a class="dropdown-item d-flex justify-content-start align-items-center" href="{{route('cuenta.show', Auth::user()->user)}}"><span class="mx-1 material-icons">person</span> Tu perfil</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider" />
+                                    </li>
+                                @endif
+
+                                @if(Auth::user()->perfil->nombre === 'Administrador')
+                                        <li>
+                                            <a class="dropdown-item d-flex justify-content-start align-items-center" href="{{route('home.admin')}}">
+                                                <span class="mx-1 material-icons">admin_panel_settings</span> Panel de Administrador
+                                            </a>
+                                        </li>
+                                    <li>
+                                        <hr class="dropdown-divider" />
+                                    </li>
+                                @endif
+                                <li>
+                                    <a class="dropdown-item d-flex justify-content-start align-items-center" href="{{route('cuenta.logout')}}">Cerrar sesión</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                    </ul>
+                @else
+                    <a href="{{route('home.login')}}" class="d-flex align-items-center text-decoration-none text-dark">Iniciar sesión</a>
+                @endif
             </div>
         </div>
     </nav>
