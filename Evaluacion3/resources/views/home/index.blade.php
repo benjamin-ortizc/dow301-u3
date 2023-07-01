@@ -9,7 +9,7 @@
             <select name="listaArtistas" id="artistas" class="form-select mb-2">
                 <option value="none" selected>Seleciona una artista</option>
                 @foreach($artistas as $artista)
-                    <option value="{{$artista->user}}">{{$artista->nombre}}</option>
+                    <option value="{{$artista->user}}">{{$artista->user}} ({{$artista->nombre . ' ' . $artista->apellido}})</option>
                 @endforeach
             </select>
 
