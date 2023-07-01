@@ -59,7 +59,7 @@
                         <input type="password" name="password2" id="inputPassword2" class="form-control">
                     </div>
 
-                    @if(Auth::user()->perfil->nombre === 'Administrador')
+                    @if(Auth::user()?->perfil->nombre === 'Administrador')
                         <div class="mb-2">
                             <label for="perfiles">Seleccione perfiles de usuario</label>
                             <select id="perfiles" name="perfil_id" class="form-select mb-2">
